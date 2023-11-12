@@ -10,13 +10,7 @@ const nodemailer = require('nodemailer');
 
 const app= new Express()
 
-app.use(BodyParser.json())
-app.use(BodyParser.urlencoded({extended:true}))
-app.use(Cors())
-
-Mongoose.connect("mongodb+srv://aatish:aatish@cluster0.euclaxo.mongodb.net/otpdb?retryWrites=true&w=majority", {useNewUrlParser: true,useUnifiedTopology: true,})
-
-app.use(express.static(path.join(__dirname, "./build")));
+app.use(Express.static(path.join(__dirname, "./build")));
 app.get("*", function (_, res) {
   res.sendFile(
     path.join(__dirname, "./build/index.html"),
@@ -25,6 +19,14 @@ app.get("*", function (_, res) {
     }
   );
 });
+
+app.use(BodyParser.json())
+app.use(BodyParser.urlencoded({extended:true}))
+app.use(Cors())
+
+Mongoose.connect("mongodb+srv://aatish:aatish@cluster0.euclaxo.mongodb.net/otpdb?retryWrites=true&w=majority", {useNewUrlParser: true,useUnifiedTopology: true,})
+
+
 
 const OtpModel = require('./models/Otp');
 
