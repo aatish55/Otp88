@@ -6,14 +6,14 @@ const bcrypt= require('bcrypt')
 const jwt =require("jsonwebtoken")
 const nodemailer = require('nodemailer');
 
-
+const path = require("path")
 
 const app= new Express()
 
-app.use(Express.static(path.join(__dirname, "/build")));
+app.use(Express.static(path.join(__dirname, "./build")));
 app.get("*", function (_, res) {
   res.sendFile(
-    path.join(__dirname, "/build/index.html"),
+    path.join(__dirname, "./build/index.html"),
     function (err) {
       res.status(500).send(err);
     }
